@@ -17,8 +17,7 @@ RUN poetry install --no-root --without dev && rm -rf $POETRY_CACHE_DIR
 # The runtime image, used to just run the code provided its virtual environment
 FROM python:3.8-slim-buster as runtime
 
-RUN apt-get update
-RUN apt-get -y install libpq-dev gcc vim sudo
+RUN apt-get update && apt-get -y install libpq-dev gcc vim sudo
 
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
